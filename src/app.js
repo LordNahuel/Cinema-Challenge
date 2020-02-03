@@ -2,12 +2,9 @@ const http = require('http');
 const app = require('express')(); 
 const bodyParser = require('body-parser');
 const compression = require('compression');
-const winston = require('winston');
+const logger = require('./common/logger');
+const router = require('./router');
 const config = require('./config/config');
-
-const logger = winston.createLogger({
-    transports: [ new winston.transports.Console() ]
-});
 
 app.use(compression()); 
 app.use(bodyParser.json({
@@ -18,6 +15,8 @@ app.use(bodyParser.urlencoded({
     limit: '50mb',
     extended: true
 }));
+
+app.use(router);
 
 // @todo manejo de errores express
 logger.info(`Starting app on port ${config.port}`);
