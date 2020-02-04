@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
     if (!auth || !auth.length) {
         return res.sendStatus(401);
     }
-
+    console.log(config);
     const user = jsonwebtoken.verify(auth, config.secret);
 
     if (!user) {
