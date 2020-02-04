@@ -1,8 +1,16 @@
 # Avalith challenge NODEJS
+
 ## Sistema de reserva de entradas para funciones de cines
+
 Esta API permite la compra de entradas para películas. La misma permitirá consultar los distintos cines disponibles, las funciones programadas para cada uno de ellos y seleccionar las sala y butacas deseadas.
-Los usuarios que no son administradores podrán seleccionar las butacas en caso de que la función y sala seleccionada cuente con las disponibilidad necesaria. Los usuarios administradores pueden dar de alta nuevas películas y editarlas.
+Los usuarios que no son administradores podrán seleccionar las butacas en caso de que la función y sala seleccionada cuente con las disponibilidad necesaria. Los usuarios administradores pueden dar de alta nuevas películas y editarlas. 
+
+## Inicialización del proyecto 
+
+Con el fin de poder evaluar todas las llamadas API disponibles en este proyecto, las cuales se encuentran detalladas mas abajo, deberá hacer una copia del archivo config.example.js que se encuentra en /src/config y renombrarlo como config.js. Una vez realizado este paso solo deberá instalar todas las dependencias corriendo el comando npm i. Para finalizar deberá correr npm run dev.  
+
 ## Tecnologías usadas
+
 - MySql para la persistencia de datos.
 - Express framework para la API
 - Nodemailer para el envío de emails, usando el servicio SMTP mailtrap
@@ -10,23 +18,35 @@ Los usuarios que no son administradores podrán seleccionar las butacas en caso 
 - Winston para el sistema de log
 - Jsonwebtoken para el sistema de autenticación
 - Squel query builder para el armado dinámico de consultas SQL
+
 ## Modelo de base de datos
+
 ![imagen modelo de datos](https://i.imgur.com/Nkt2tX3.png)
+
 El modelo de datos propuesto, contempla la posibilidad de que un cine tenga más de una sala.
 Las salas, pueden tener varias funciones en distintos horarios para las distintas películas.
 Para persistir la compra, se guardan datos básicos de la compra tales como el precio, la función y el usuario. Asi como tambien todas las butacas que contiene.
 Debido a que esto es un challenge, las contraseñas no se guardan de forma cifrada, aunque en un caso real sería una buena práctica hacerlo.
 En el repositorio se adjunta un dump de la base de datos a fin de tener registros ya insertados a modo de prueba.
+
 ## Llamadas API disponibles
+
 En el repositorio se adjunta la configuración de Postman que se podrá importar para poder consumir todos los endpoints disponibles a fin de testearlos.
+
 ### Get all genres
+
 `/genres`
+
 Esta llamada API permite conocer todos los géneros disponibles
+
 ### Get all movies
+
 `/movies`
+
 Esta llamada API permite obtener el listado de todas las películas disponibles (que se podrían llegar a ver en cualquier cine) a su vez permite filtrar por IDs de género.
  
 ### Add movie
+
 `/movie`
  
 Esta llamada API permite crear una nueva película con nombre, genre_id y duración.
