@@ -1,0 +1,404 @@
+{
+	"info": {
+		"_postman_id": "650e415c-82af-4315-91fc-0384f6a377a9",
+		"name": "Challenge Cinema_db",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "genres",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo4LCJlbWFpbCI6InJvcm9ub2FAb3V0bG9vay5jb20iLCJuYW1lIjoiUm9yb25vYSBab3JvIiwidXNlcm5hbWUiOiJab3JvIiwicm9sZSI6IkFkbWluIn0sImlhdCI6MTU4MDY5MzYzNCwiZXhwIjoxNTgwNzM2ODM0fQ._oR_kkmRA5GVlvEnPVPDMDPdc_MV-t9kZunTzxWZPTM",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{API_IURL}}/genres",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"genres"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2e5bb6bc-61ea-4c32-b577-1f3b7e881f4a",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9d7d07f5-0727-4cd4-b678-28e32be168a8",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "movies",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_IURL}}/movies?ids[]=1&ids[]=2",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"movies"
+							],
+							"query": [
+								{
+									"key": "ids[]",
+									"value": "1"
+								},
+								{
+									"key": "ids[]",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addMovie",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"genre_id\": 3,\n\t\"name\": \"La batalla de los dioses\", \n\t\"duration\": 60\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_IURL}}/movie",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"movie"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateMovie",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"dragon ball Xenoverse\", \n\t\"duration\": 60,\n\t\"genre\": 3\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_IURL}}/movies/:movie_id",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"movies",
+								":movie_id"
+							],
+							"variable": [
+								{
+									"key": "movie_id",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "boughts",
+			"item": [
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjo4LCJlbWFpbCI6InJvcm9ub2FAb3V0bG9vay5jb20iLCJuYW1lIjoiUm9yb25vYSBab3JvIiwidXNlcm5hbWUiOiJab3JvIiwicm9sZSI6IkFkbWluIn0sImlhdCI6MTU4MDY5MzYzNCwiZXhwIjoxNTgwNzM2ODM0fQ._oR_kkmRA5GVlvEnPVPDMDPdc_MV-t9kZunTzxWZPTM",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"seats\": [1, 2]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/cinemas/:cinema_id/functions/:function_id/boughts",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"cinemas",
+								":cinema_id",
+								"functions",
+								":function_id",
+								"boughts"
+							],
+							"variable": [
+								{
+									"key": "cinema_id",
+									"value": "1"
+								},
+								{
+									"key": "function_id",
+									"value": "4"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "585da1ad-a7f5-418b-a565-62b7f3e2d524",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "6b185b87-1ceb-43e9-aaed-186ee7e6fee7",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "cinemas",
+			"item": [
+				{
+					"name": "getAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_IURL}}/cinemas",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"cinemas"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "rooms",
+			"item": [
+				{
+					"name": "getByCinemaId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_IURL}}/cinemas/:cinema_id/rooms",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"cinemas",
+								":cinema_id",
+								"rooms"
+							],
+							"variable": [
+								{
+									"key": "cinema_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"email\": \"roronoa@outlook.com\", \n\t\"password\": \"zoro123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_IURL}}/auth/signin",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"auth",
+								"signin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "functions",
+			"item": [
+				{
+					"name": "getByCinemaId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_IURL}}/cinemas/:cinema_id/functions",
+							"host": [
+								"{{API_IURL}}"
+							],
+							"path": [
+								"cinemas",
+								":cinema_id",
+								"functions"
+							],
+							"variable": [
+								{
+									"key": "cinema_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "57615e83-289a-460e-961e-847d39a28b48",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "aaaf72b8-86f7-4d2c-a0f2-f3239229e57c",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "80a7053f-7459-4aea-b788-72ea76a20276",
+			"key": "API_IURL",
+			"value": "http://localhost:3000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
