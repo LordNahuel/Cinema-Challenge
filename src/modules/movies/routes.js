@@ -1,15 +1,19 @@
+const http = require('../../constants').http;
+
 module.exports = [{
-    method: 'get',
+    method: http.verbs.GET,
     path: '/movies',
     handler: 'getAll'
 },
 {
-    method: 'post',
+    method: http.verbs.POST,
     path: '/movie',
-    handler: 'addMovie'
+    handler: 'addMovie',
+    middlewares: ['auth', 'isAdmin']
 },
 {
-    method: 'put',
+    method: http.verbs.PUT,
     path: '/movies/:movie_id', 
-    handler: 'updateMovie'
+    handler: 'updateMovie',
+    middlewares: ['auth', 'isAdmin']
 }];

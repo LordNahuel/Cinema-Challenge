@@ -1,5 +1,7 @@
+const http = require('../../constants').http;
+
 module.exports = [{ 
-    method: 'get', 
+    method: http.verbs.GET, 
     path: '/genres',
     handler: 'getAll'
 }];

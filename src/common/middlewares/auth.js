@@ -1,20 +1,27 @@
 const jsonwebtoken = require('jsonwebtoken');
 const config = require('../../config/config');
+const http = require('../../constants').http;
+const logger = require('../logger');
 
 module.exports = async (req, res, next) => {
-    const auth = req.get('Authorization');
+    try {
+        const auth = req.get('Authorization');
     
-    if (!auth || !auth.length) {
-        return res.sendStatus(401);
+        if (!auth || !auth.length) {
+            return res.sendStatus(http.status.UNAUTHORIZED);
+        }
+
+        const user = jsonwebtoken.verify(auth, config.secret);
+
+        if (!user) {
+            return res.sendStatus(http.status.UNAUTHORIZED);
+        }
+
+        req.user = user.data;
+
+        return next();
+    } catch (error) {
+        logger.warn('Can\'t verify credentials', error);
+        res.sendStatus(http.status.UNAUTHORIZED);
     }
-    console.log(config);
-    const user = jsonwebtoken.verify(auth, config.secret);
-
-    if (!user) {
-        return res.sendStatus(401);
-    }
-
-    req.user = user.data;
-
-    return next();
 };

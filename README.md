@@ -7,7 +7,18 @@ Los usuarios que no son administradores podrán seleccionar las butacas en caso 
 
 ## Inicialización del proyecto 
 
-Con el fin de poder evaluar todas las llamadas API disponibles en este proyecto, las cuales se encuentran detalladas mas abajo, deberá hacer una copia del archivo config.example.js que se encuentra en /src/config y renombrarlo como config.js. Una vez realizado este paso solo deberá instalar todas las dependencias corriendo el comando npm i. Para finalizar deberá correr npm run dev.  
+### Instalar dependencias
+```
+npm i
+```
+
+### Crear archivo de configuración 
+Crear el archivo `config.js` dentro de la carpeta `config`. Para tal fin, dentro de la carpeta `config` hay un archivo de ejemplo.
+
+### Ejecutar la aplicación
+```
+npm run dev
+```
 
 ## Tecnologías usadas
 
